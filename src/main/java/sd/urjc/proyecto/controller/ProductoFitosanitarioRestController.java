@@ -1,5 +1,6 @@
 package sd.urjc.proyecto.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class ProductoFitosanitarioRestController {
 
 	@Autowired
 	private ProductoFitosanitarioRepository repProductos;
+	
+	@GetMapping("/")
+    private ResponseEntity<List<ProductoFitosanitario>> getProductos() {
+        return new ResponseEntity<List<ProductoFitosanitario>>(repProductos.findAll(), HttpStatus.OK);
+    }
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ProductoFitosanitario> getProducto(@PathVariable String id){
