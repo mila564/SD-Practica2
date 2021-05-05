@@ -14,12 +14,19 @@ import sd.urjc.proyecto.repository.PlagaRepository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
 @RestController
 @RequestMapping("/plagas")
 public class PlagaRestController {
 	
 	@Autowired
 	private PlagaRepository repPlagas;
+	
+	@PostConstruct
+	public void init() {
+		
+	}
 	
 	@GetMapping("/")
     private ResponseEntity<List<Plaga>> getPlagas() {
