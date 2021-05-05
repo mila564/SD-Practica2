@@ -30,5 +30,10 @@ public class SustanciaActivaController {
 			return new ResponseEntity<SustanciaActiva>(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
+	@GetMapping("/")
+	public ResponseEntity<List<SustanciaActiva>> getSustanciasActivas(){
+		List<SustanciaActiva> sustanciasActivas = repSustanciaActiva.findAll();
+		return new ResponseEntity<List<SustanciaActiva>>(sustanciasActivas, HttpStatus.OK);
+	}
 }

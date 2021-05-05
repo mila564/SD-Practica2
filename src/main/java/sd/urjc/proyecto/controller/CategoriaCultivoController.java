@@ -29,5 +29,14 @@ public class CategoriaCultivoController {
 		else {
 			return new ResponseEntity<CategoriaCultivo>(HttpStatus.NOT_FOUND);
 		}
+		
 	}
+	
+	@GetMapping("/")
+	public ResponseEntity<List<CategoriaCultivo>> getCategoriasCultivo(){
+		List<CategoriaCultivo> categorias = repCategoriaCultivo.findAll();
+		return new ResponseEntity<List<CategoriaCultivo>>(categorias, HttpStatus.OK);
+	}
+	
+	
 }
