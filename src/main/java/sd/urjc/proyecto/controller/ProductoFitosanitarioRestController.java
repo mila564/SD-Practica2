@@ -25,38 +25,39 @@ public class ProductoFitosanitarioRestController {
 	
 	@PostConstruct
 	public void init() {
-		repProductos.save(new ProductoFitosanitario("MICROTHIOL SPECIAL DISPERSS", "http://productos.es/microthiol"));
-		repProductos.save(new ProductoFitosanitario("COBRE NORDOX 50", "http://productos.es/nordox"));
-		repProductos.save(new ProductoFitosanitario("DECCOSOL-MF", "http://productos.es/deccosol"));
-		repProductos.save(new ProductoFitosanitario("BASAGRAN L", "http://productos.es/basagran"));
-		repProductos.save(new ProductoFitosanitario("CUPERVAL", "http://productos.es/cuperval"));
-		repProductos.save(new ProductoFitosanitario("MICROTOX", "http://productos.es/microtox"));
-		repProductos.save(new ProductoFitosanitario("EVER TRANSPARENTE", "http://productos.es/ever"));
-		repProductos.save(new ProductoFitosanitario("NUFO-Z", "http://productos.es/nufo"));
-		repProductos.save(new ProductoFitosanitario("BANVEL-D", "http://productos.es/banvel"));
-		repProductos.save(new ProductoFitosanitario("QUILAN", "http://productos.es/quilan"));
-		repProductos.save(new ProductoFitosanitario("VENZAR", "http://productos.es/venzar"));
-		repProductos.save(new ProductoFitosanitario("VYDATE 10 G", "http://productos.es/vydate"));
-		repProductos.save(new ProductoFitosanitario("BELTASUR-500", "http://productos.es/beltasur"));
-		repProductos.save(new ProductoFitosanitario("CAPTANA", "http://productos.es/captana"));
-		repProductos.save(new ProductoFitosanitario("CALDO BORDELES MAC 80", "http://productos.es/bordeles"));
-		repProductos.save(new ProductoFitosanitario("METENAL", "http://productos.es/metenal"));
-		repProductos.save(new ProductoFitosanitario("FULMIT", "http://productos.es/fulmit"));
-		repProductos.save(new ProductoFitosanitario("APHOX", "http://productos.es/aphox"));
-		repProductos.save(new ProductoFitosanitario("CAPTAGREX 80", "http://productos.es/captagrex"));
-		repProductos.save(new ProductoFitosanitario("DITIVER C PM", "http://productos.es/ditiver"));
-		repProductos.save(new ProductoFitosanitario("AZUFRE FAMOLINS", "http://productos.es/azufre"));
-		repProductos.save(new ProductoFitosanitario("VOLCK VERANO", "http://productos.es/volck"));
-		repProductos.save(new ProductoFitosanitario("SANAGRICOLA WP", "http://productos.es/sanagricola"));
-		repProductos.save(new ProductoFitosanitario("CAPTERAN 50", "http://productos.es/capteran"));
-		repProductos.save(new ProductoFitosanitario("PELT 50 SC", "http://productos.es/pelt"));
-		repProductos.save(new ProductoFitosanitario("ACTELLIC 50-E", "http://productos.es/actellic"));
-		repProductos.save(new ProductoFitosanitario("AGRAL", "http://productos.es/agral"));
-		repProductos.save(new ProductoFitosanitario("LIMAGRAM", "http://productos.es/limagram"));
-		repProductos.save(new ProductoFitosanitario("CUPREBEL", "http://productos.es/cuprebel"));
-		repProductos.save(new ProductoFitosanitario("ELOGIUM", "http://productos.es/elogium"));
-		repProductos.save(new ProductoFitosanitario("SUPRAMIN 20", "http://productos.es/supramin"));
+		repProductos.save(new ProductoFitosanitario("Microthiol Special Disperss", "http://productos.es/microthiol"));
+		repProductos.save(new ProductoFitosanitario("Cobre Nordox 50", "http://productos.es/nordox"));
+		repProductos.save(new ProductoFitosanitario("Deccosol MF", "http://productos.es/deccosol"));
+		repProductos.save(new ProductoFitosanitario("Basagran L", "http://productos.es/basagran"));
+		repProductos.save(new ProductoFitosanitario("Cuperval", "http://productos.es/cuperval"));
+		repProductos.save(new ProductoFitosanitario("Microtox", "http://productos.es/microtox"));
+		repProductos.save(new ProductoFitosanitario("Ever transparente", "http://productos.es/ever"));
+		repProductos.save(new ProductoFitosanitario("Nufo-Z", "http://productos.es/nufo"));
+		repProductos.save(new ProductoFitosanitario("Banvel D", "http://productos.es/banvel"));
+		repProductos.save(new ProductoFitosanitario("Quilan", "http://productos.es/quilan"));
+		repProductos.save(new ProductoFitosanitario("Venzar", "http://productos.es/venzar"));
+		repProductos.save(new ProductoFitosanitario("Vydate 10 G", "http://productos.es/vydate"));
+		repProductos.save(new ProductoFitosanitario("Beltasur 500", "http://productos.es/beltasur"));
+		repProductos.save(new ProductoFitosanitario("Captana", "http://productos.es/captana"));
+		repProductos.save(new ProductoFitosanitario("Caldo Bordeles MAC 80", "http://productos.es/bordeles"));
+		repProductos.save(new ProductoFitosanitario("Metenal", "http://productos.es/metenal"));
+		repProductos.save(new ProductoFitosanitario("Fulmit", "http://productos.es/fulmit"));
+		repProductos.save(new ProductoFitosanitario("Aphox", "http://productos.es/aphox"));
+		repProductos.save(new ProductoFitosanitario("Captagrex 80", "http://productos.es/captagrex"));
+		repProductos.save(new ProductoFitosanitario("Ditiver C PM", "http://productos.es/ditiver"));
+		repProductos.save(new ProductoFitosanitario("Azufre Famolins", "http://productos.es/azufre"));
+		repProductos.save(new ProductoFitosanitario("Volck Verano", "http://productos.es/volck"));
+		repProductos.save(new ProductoFitosanitario("Sanagricola WP", "http://productos.es/sanagricola"));
+		repProductos.save(new ProductoFitosanitario("Capteran 50", "http://productos.es/capteran"));
+		repProductos.save(new ProductoFitosanitario("Pelt 50 SC", "http://productos.es/pelt"));
+		repProductos.save(new ProductoFitosanitario("Actellic 50 E", "http://productos.es/actellic"));
+		repProductos.save(new ProductoFitosanitario("Agral", "http://productos.es/agral"));
+		repProductos.save(new ProductoFitosanitario("Limagram", "http://productos.es/limagram"));
+		repProductos.save(new ProductoFitosanitario("Cuprebel", "http://productos.es/cuprebel"));
+		repProductos.save(new ProductoFitosanitario("Elogium", "http://productos.es/elogium"));
+		repProductos.save(new ProductoFitosanitario("Supramin 20", "http://productos.es/supramin"));
 	}
+	
 	@GetMapping("/")
     private ResponseEntity<List<ProductoFitosanitario>> getProductos() {
         return new ResponseEntity<List<ProductoFitosanitario>>(repProductos.findAll(), HttpStatus.OK);
