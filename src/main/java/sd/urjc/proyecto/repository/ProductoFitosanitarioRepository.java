@@ -10,4 +10,5 @@ import sd.urjc.proyecto.model.ProductoFitosanitario;
 @Service
 public interface ProductoFitosanitarioRepository extends JpaRepository<ProductoFitosanitario, Long>{
 	Optional<ProductoFitosanitario> findById(long id);
+	ProductoFitosanitario getOne(Long id);
 }
