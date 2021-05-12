@@ -30,22 +30,22 @@ public class CategoriaCultivoController {
 	@PostConstruct
 	public void init() {
 		repCategoriaCultivo.save(new CategoriaCultivo("Frutales", Arrays.asList(
-				repEspecie.getOne((long)1),
-				repEspecie.getOne((long)2)
+				repEspecie.findByNombreVulgar("Manzano").get(),
+				repEspecie.findByNombreVulgar("Peral").get()
 				)));
 		repCategoriaCultivo.save(new CategoriaCultivo("Hortalizas", Arrays.asList(
-				repEspecie.getOne((long)3),
-				repEspecie.getOne((long)4),
-				repEspecie.getOne((long)1)
+				repEspecie.findByNombreVulgar("Fresa").get(),
+				repEspecie.findByNombreVulgar("Naranjo").get(),
+				repEspecie.findByNombreVulgar("Vid").get()
 				)));
 		repCategoriaCultivo.save(new CategoriaCultivo("Cereales", Arrays.asList(
-				repEspecie.getOne((long)5),
-				repEspecie.getOne((long)6),
-				repEspecie.getOne((long)1)
+				repEspecie.findByNombreVulgar("Cacahuete").get(),
+				repEspecie.findByNombreVulgar("Lechuga").get(),
+				repEspecie.findByNombreVulgar("Alcachofa").get()
 				)));
 		repCategoriaCultivo.save(new CategoriaCultivo("Oleaginosas", Arrays.asList(
-				repEspecie.getOne((long)7),
-				repEspecie.getOne((long)8)
+				repEspecie.findByNombreVulgar("Alcachofa").get(),
+				repEspecie.findByNombreVulgar("Cacahuete").get()
 				)));
 	}
 	
