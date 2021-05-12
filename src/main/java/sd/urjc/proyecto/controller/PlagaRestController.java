@@ -112,9 +112,9 @@ public class PlagaRestController {
         return new ResponseEntity<List<Plaga>>(repPlagas.findAll(), HttpStatus.OK);
     }
 	
-	@GetMapping(value = "/{nombre}")
-	public ResponseEntity<Plaga> getPlaga(@PathVariable String nombre) {
-		Optional<Plaga> opt = repPlagas.findByNombre(nombre);
+	@GetMapping(value = "/{nombreVulgar}")
+	public ResponseEntity<Plaga> getPlaga(@PathVariable String nombreVulgar) {
+		Optional<Plaga> opt = repPlagas.findByNombreVulgar(nombreVulgar);
         if (opt.isPresent()) {
             return new ResponseEntity<Plaga>(opt.get(), HttpStatus.OK);
         }
