@@ -9,6 +9,5 @@ import sd.urjc.proyecto.model.SustanciaActiva;
 
 @Service
 public interface SustanciaActivaRepository extends JpaRepository<SustanciaActiva, Long> {
-	Optional<SustanciaActiva> findById(Long id);
-	SustanciaActiva getOne(Long id);
+	Optional<SustanciaActiva> findByNombre(String nombre);
 }
