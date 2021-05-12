@@ -9,6 +9,5 @@ import sd.urjc.proyecto.model.CategoriaCultivo;
 
 @Service
 public interface CategoriaCultivoRepository extends JpaRepository<CategoriaCultivo, Long> {
-	Optional<CategoriaCultivo> findById(Long id);
-	CategoriaCultivo findByNombre(String nombre);
+	Optional<CategoriaCultivo> findByNombre(String nombre);
 }

@@ -29,95 +29,96 @@ public class SustanciaActivaController {
 	@PostConstruct
 	public void init() {
 		repSustanciaActiva.save(new SustanciaActiva("8-hidroxiquinoleina", Arrays.asList(
-				repProductoFitosanitario.getOne((long)1),
-				repProductoFitosanitario.getOne((long)2),
-				repProductoFitosanitario.getOne((long)3),
-				repProductoFitosanitario.getOne((long)4),
-				repProductoFitosanitario.getOne((long)5)
+				repProductoFitosanitario.findByNombre("Microthiol").get(),
+				repProductoFitosanitario.findByNombre("Cobre Nordox 50").get(),
+				repProductoFitosanitario.findByNombre("Deccosol MF").get(),
+				repProductoFitosanitario.findByNombre("Basagran L").get(),
+				repProductoFitosanitario.findByNombre("Cuperval").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("24-epibrasilonida",Arrays.asList(
-				repProductoFitosanitario.getOne((long)1),
-				repProductoFitosanitario.getOne((long)2),
-				repProductoFitosanitario.getOne((long)3),
-				repProductoFitosanitario.getOne((long)4),
-				repProductoFitosanitario.getOne((long)5)
+				repProductoFitosanitario.findByNombre("Microthiol").get(),
+				repProductoFitosanitario.findByNombre("Cobre Nordox 50").get(),
+				repProductoFitosanitario.findByNombre("Deccosol MF").get(),
+				repProductoFitosanitario.findByNombre("Basagran L").get(),
+				repProductoFitosanitario.findByNombre("Cuperval").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Aceite de naranja",Arrays.asList(
-				repProductoFitosanitario.getOne((long)6),
-				repProductoFitosanitario.getOne((long)7),
-				repProductoFitosanitario.getOne((long)8)
+				repProductoFitosanitario.findByNombre("Microtox").get(),
+				repProductoFitosanitario.findByNombre("Ever transparente").get(),
+				repProductoFitosanitario.findByNombre("Nufo-Z").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Aceite de parafina",Arrays.asList(
-				repProductoFitosanitario.getOne((long)9),
-				repProductoFitosanitario.getOne((long)10)
+				repProductoFitosanitario.findByNombre("Quilan").get(),
+				repProductoFitosanitario.findByNombre("Venzar").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Acetaton amónico",Arrays.asList(
-				repProductoFitosanitario.getOne((long)9)
+				repProductoFitosanitario.findByNombre("Vydate 10 G").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Acibenzolar-s-metil",Arrays.asList(
-				repProductoFitosanitario.getOne((long)11),
-				repProductoFitosanitario.getOne((long)12))));
+				repProductoFitosanitario.findByNombre("Beltasur 500").get(),
+				repProductoFitosanitario.findByNombre("Captana").get()
+				)));
 		repSustanciaActiva.save(new SustanciaActiva("Ácido acético",Arrays.asList(
-				repProductoFitosanitario.getOne((long)13),
-				repProductoFitosanitario.getOne((long)14)
+				repProductoFitosanitario.findByNombre("Caldo Bordeles MAC 80").get(),
+				repProductoFitosanitario.findByNombre("Metenal").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Ácido L-ascórbico",Arrays.asList(
-				repProductoFitosanitario.getOne((long)15),
-				repProductoFitosanitario.getOne((long)16)
+				repProductoFitosanitario.findByNombre("Fulmit").get(),
+				repProductoFitosanitario.findByNombre("Aphox").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Ácido S-abscísico",Arrays.asList(
-				repProductoFitosanitario.getOne((long)17),
-				repProductoFitosanitario.getOne((long)18)
+				repProductoFitosanitario.findByNombre("Captagrex 80").get(),
+				repProductoFitosanitario.findByNombre("Ditiver C PM").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Ácido benzoico",Arrays.asList(
-				repProductoFitosanitario.getOne((long)19),
-				repProductoFitosanitario.getOne((long)20)
+				repProductoFitosanitario.findByNombre("Azufre Famolins").get(),
+				repProductoFitosanitario.findByNombre("Volck Verano").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Ácido gilberélico",Arrays.asList(
-				repProductoFitosanitario.getOne((long)21),
-				repProductoFitosanitario.getOne((long)22)
+				repProductoFitosanitario.findByNombre("Sanagricola WP").get(),
+				repProductoFitosanitario.findByNombre("Capteran 50").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Aclonifen",Arrays.asList(
-				repProductoFitosanitario.getOne((long)23),
-				repProductoFitosanitario.getOne((long)24)
+				repProductoFitosanitario.findByNombre("Pelt 50 SC").get(),
+				repProductoFitosanitario.findByNombre("Actellic 50 E").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Acrinatrin",Arrays.asList(
-				repProductoFitosanitario.getOne((long)25),
-				repProductoFitosanitario.getOne((long)26)
+				repProductoFitosanitario.findByNombre("Agral").get(),
+				repProductoFitosanitario.findByNombre("").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Alfa cipermetrina",Arrays.asList(
-				repProductoFitosanitario.getOne((long)27),
-				repProductoFitosanitario.getOne((long)28)
+				repProductoFitosanitario.findByNombre("Limagram").get(),
+				repProductoFitosanitario.findByNombre("Cuprebel").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Amidosulfurón",Arrays.asList(
-				repProductoFitosanitario.getOne((long)29),
-				repProductoFitosanitario.getOne((long)30)
+				repProductoFitosanitario.findByNombre("Elogium").get(),
+				repProductoFitosanitario.findByNombre("Supramin 20").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Aminopiralida",Arrays.asList(
-				repProductoFitosanitario.getOne((long)9),
-				repProductoFitosanitario.getOne((long)8),
-				repProductoFitosanitario.getOne((long)13),
-				repProductoFitosanitario.getOne((long)14)
+				repProductoFitosanitario.findByNombre("Captagrex 80").get(),
+				repProductoFitosanitario.findByNombre("Ditiver C PM").get(),
+				repProductoFitosanitario.findByNombre("Azufre Famolins").get(),
+				repProductoFitosanitario.findByNombre("Ditiver C PM").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Amepelomyces quisqualis",Arrays.asList(
-				repProductoFitosanitario.getOne((long)19),
-				repProductoFitosanitario.getOne((long)25),
-				repProductoFitosanitario.getOne((long)13)
+				repProductoFitosanitario.findByNombre("Fulmit").get(),
+				repProductoFitosanitario.findByNombre("Ditiver C PM").get(),
+				repProductoFitosanitario.findByNombre("Sanagricola WP").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Azimsulfurón",Arrays.asList(
-				repProductoFitosanitario.getOne((long)23),
-				repProductoFitosanitario.getOne((long)14)
+				repProductoFitosanitario.findByNombre("Ever transparente").get(),
+				repProductoFitosanitario.findByNombre("Banvel D").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Aureobasidium pullulans",Arrays.asList(
-				repProductoFitosanitario.getOne((long)1)
+				repProductoFitosanitario.findByNombre("Quilan").get()
 				)));
 		repSustanciaActiva.save(new SustanciaActiva("Arena de cuarzo",Arrays.asList(
-				repProductoFitosanitario.getOne((long)11),
-				repProductoFitosanitario.getOne((long)22),
-				repProductoFitosanitario.getOne((long)18),
-				repProductoFitosanitario.getOne((long)2),
-				repProductoFitosanitario.getOne((long)20),
-				repProductoFitosanitario.getOne((long)15)
+				repProductoFitosanitario.findByNombre("Vydate 10 G").get(),
+				repProductoFitosanitario.findByNombre("Venzar").get(),
+				repProductoFitosanitario.findByNombre("Metenal").get(),
+				repProductoFitosanitario.findByNombre("Fulmit").get(),
+				repProductoFitosanitario.findByNombre("Vydate 10 G").get(),
+				repProductoFitosanitario.findByNombre("Caldo Bordeles MAC 80").get()
 				)));
 
 	}
