@@ -9,5 +9,7 @@ import sd.urjc.proyecto.model.Plaga;
 
 @Service
 public interface PlagaRepository extends JpaRepository<Plaga, Long>{
-	Optional<Plaga> findById (long id);
+	Optional<Plaga> findByNombreVulgar(String nombreVulgar);
+	Optional<Plaga> findByNombreCientifico(String nombreCientifico);
+	Optional<Plaga> findByUrl(String url);
 }

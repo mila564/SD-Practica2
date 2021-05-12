@@ -28,22 +28,23 @@ public class EspecieController {
 
 	@PostConstruct
 	public void init() {
-		repEspecies.save(new Especie("Manzano", "Malus domestica", Arrays.asList(repPlagas.getOne((long)1), repPlagas.getOne((long)2))));
-		repEspecies.save(new Especie("Peral", "Pyrus communis", Arrays.asList(repPlagas.getOne((long)3), repPlagas.getOne((long)4))));
-		repEspecies.save(new Especie("Naranjo", "Citrus sinensis", Arrays.asList(repPlagas.getOne((long)5), repPlagas.getOne((long)6))));
-		repEspecies.save(new Especie("Fresa", "Fragaria Ananassa", Arrays.asList(repPlagas.getOne((long)7), repPlagas.getOne((long)8))));
-		repEspecies.save(new Especie("Vid", "Vitis vinifera", Arrays.asList(repPlagas.getOne((long)9), repPlagas.getOne((long)10))));
-		repEspecies.save(new Especie("Alcachofa", "Cynara scolymus", Arrays.asList(repPlagas.getOne((long)11), repPlagas.getOne((long)12))));
-		repEspecies.save(new Especie("Lechuga", "Lactuca sativa", Arrays.asList(repPlagas.getOne((long)13), repPlagas.getOne((long)14))));
-		repEspecies.save(new Especie("Cacahuete", "Arachis hypogaea", Arrays.asList(repPlagas.getOne((long)15), repPlagas.getOne((long)16))));
+		repEspecies.save(new Especie("Manzano", "Malus domestica", Arrays.asList(repPlagas.findByNombreVulgar("Polilla del aliso").get(), repPlagas.findByNombreVulgar("Oruga de zurrón").get(), repPlagas.findByNombreVulgar("Cigarrita de espuma").get())));
+		repEspecies.save(new Especie("Peral", "Pyrus communis", Arrays.asList(repPlagas.findByNombreVulgar("Polilla del aliso").get(), repPlagas.findByNombreVulgar("Oruga de zurrón").get(), repPlagas.findByNombreVulgar("Mosquito de las agallas").get())));
+		repEspecies.save(new Especie("Naranjo", "Citrus sinensis", Arrays.asList(repPlagas.findByNombreVulgar("Polilla del aliso").get(), repPlagas.findByNombreVulgar("Pájaro luna").get(), repPlagas.findByNombreVulgar("Polilla leopardo").get())));
+		repEspecies.save(new Especie("Fresa", "Fragaria Ananassa", Arrays.asList(repPlagas.findByNombreVulgar("Piojo Rojo de California").get(), repPlagas.findByNombreVulgar("Pájaro luna").get(), repPlagas.findByNombreVulgar("Gorgojo perforador de los chopos").get())));
+		repEspecies.save(new Especie("Vid", "Vitis vinifera", Arrays.asList(repPlagas.findByNombreVulgar("Mosca blanca").get(), repPlagas.findByNombreVulgar("Escarabajo Khapra").get())));
+		repEspecies.save(new Especie("Alcachofa", "Cynara scolymus", Arrays.asList(repPlagas.findByNombreVulgar("Trips").get(), repPlagas.findByNombreVulgar("Ácaro púrpura").get())));
+		repEspecies.save(new Especie("Lechuga", "Lactuca sativa", Arrays.asList(repPlagas.findByNombreVulgar("Minador sudamericano").get(), repPlagas.findByNombreVulgar("Cotonet de les Valls").get())));
+		repEspecies.save(new Especie("Cacahuete", "Arachis hypogaea", Arrays.asList(repPlagas.findByNombreVulgar("Drosófila de alas manchadas").get(), repPlagas.findByNombreVulgar("Pulgón").get())));
+																														//repPlagas.findByNombreVulgar("").get(), repPlagas.findByNombreVulgar("").get()
 	}
 	@GetMapping("")
 	public ResponseEntity<List<Especie>> getEspecies() {
 		return new ResponseEntity<>(repEspecies.findAll(), HttpStatus.OK);
 	}
-	@GetMapping("/{id}")
-	private ResponseEntity<Especie> getEspecie(@PathVariable long id) {
-		Optional<Especie> especie = repEspecies.findById(id);
+	@GetMapping("/{nombreVulgar}")
+	private ResponseEntity<Especie> getEspecie(@PathVariable String nombreVulgar) {
+		Optional<Especie> especie = repEspecies.findByNombreVulgar(nombreVulgar);
 		if (especie.isPresent())
 			return new ResponseEntity<>(especie.get(), HttpStatus.OK);
 		else
