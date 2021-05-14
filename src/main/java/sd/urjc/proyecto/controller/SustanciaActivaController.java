@@ -20,9 +20,9 @@ public class SustanciaActivaController {
 	@Autowired
 	private SustanciaActivaRepository repSustanciaActiva;
 
-	@GetMapping("/{id}")
-	public ResponseEntity<SustanciaActiva> getSustanciaActiva(@PathVariable("id") String id){
-		Optional<SustanciaActiva> sustanciaActiva = repSustanciaActiva.findById(Long.parseLong(id));
+	@GetMapping("/{nombre}")
+	public ResponseEntity<SustanciaActiva> getSustanciaActiva(@PathVariable("nombre") String nombre){
+		Optional<SustanciaActiva> sustanciaActiva = repSustanciaActiva.findByNombre(nombre);
 		if(sustanciaActiva.isPresent()) {
 			return new ResponseEntity<SustanciaActiva>(sustanciaActiva.get(), HttpStatus.OK);
 		}

@@ -20,9 +20,9 @@ public class CategoriaCultivoController {
 	@Autowired
 	private CategoriaCultivoRepository repCategoriaCultivo;
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<CategoriaCultivo>getCategoriaCultivo(@PathVariable("id") String id){
-		Optional<CategoriaCultivo> categoria = repCategoriaCultivo.findById(Long.parseLong(id));
+	@GetMapping(value = "/{nombre}")
+	public ResponseEntity<CategoriaCultivo>getCategoriaCultivo(@PathVariable("nombre") String nombre){
+		Optional<CategoriaCultivo> categoria = repCategoriaCultivo.findByNombre(nombre);
 		if(categoria.isPresent()) {
 			return new ResponseEntity<CategoriaCultivo>(categoria.get(), HttpStatus.OK);
 		}

@@ -26,9 +26,9 @@ public class ProductoFitosanitarioRestController {
         return new ResponseEntity<List<ProductoFitosanitario>>(repProductos.findAll(), HttpStatus.OK);
     }
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<ProductoFitosanitario> getProducto(@PathVariable String id){
-		Optional<ProductoFitosanitario> opt = repProductos.findById(Long.parseLong(id));
+	@GetMapping(value = "/{nombre}")
+	public ResponseEntity<ProductoFitosanitario> getProducto(@PathVariable String nombre){
+		Optional<ProductoFitosanitario> opt = repProductos.findByNombre(nombre);
 		if (opt.isPresent()) {
 			return new ResponseEntity<ProductoFitosanitario>(opt.get(), HttpStatus.OK);
 		}
