@@ -32,9 +32,9 @@ public class CategoriaCultivoController {
 		
 	}
 	@GetMapping("/")
-	public List<CategoriaCultivo> getCategoriasCultivo(){
+	public ResponseEntity<List<CategoriaCultivo>> getCategoriasCultivo(){
 		List<CategoriaCultivo> categorias = repCategoriaCultivo.findAll();
-		return categorias;
+		return new ResponseEntity<List<CategoriaCultivo>>(categorias, HttpStatus.OK);
 	}
 	
 	
