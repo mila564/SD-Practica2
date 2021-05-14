@@ -1,20 +1,23 @@
 $(function(){
-	lista = $('#listaCategorias');	// Cogemos la lista del html 
-	var urlCategoriaCultivo = 'http://localhost:8080/categoriaCultivo/'; // Url donde se va a obtener la lista de categorías de cultivo
+	contenedor = $('#listaCategorias');	// Cogemos la contenedor del html 
+	var urlCategoriaCultivo = 'http://localhost:8080/categoriaCultivo/'; // Url donde se va a obtener la contenedor de categorías de cultivo
 	$.getJSON(urlCategoriaCultivo,
 		function(respuesta){
-			lista.append($('<h2>').html('Categorías')); // Título Categorías
-			lista.append($('</h2>'));
-			lista.append($('<ul>'));
+			contenedor.append($('<h2>').html('Categorías')); // Título Categorías
+			contenedor.append($('</h2>'));
+			contenedor.append($('<ul id="listaCategorias">'));
+			contenedor.append($('</ul>'));
+			lista = $('#listaCategorias');
 			for (categoria in respuesta){
 				lista.append($('<li>').html(respuesta[categoria].nombre));
+				lista.append($('</li>'));
+			}
+			$('li').each(function(){
 				var button = document.createElement('button'); 
 				button.type = 'button'; 
 				button.innerText = 'Mostrar'; 
-				lista.append(button);
-				lista.append($('</li>'));
-			}
-			lista.append($('</ul>'));
+    			$(this).append(button);
+			})
 		}
 	);
 });
