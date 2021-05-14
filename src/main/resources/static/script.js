@@ -9,15 +9,17 @@ $(function(){
 			contenedor.append($('</ul>'));
 			lista = $('#listaCategorias');
 			for (categoria in respuesta){
-				lista.append($('<li>').html(respuesta[categoria].nombre));
+				elemento = $('<li>').html(respuesta[categoria].nombre);
+				lista.append(elemento);
 				lista.append($('</li>'));
-			}
-			$('li').each(function(){
 				var button = document.createElement('button'); 
 				button.type = 'button'; 
-				button.innerText = 'Mostrar'; 
+				button.innerText = 'Mostrar';
+				elemento.append(button);
+			}/*
+			$('li').each(function(){ 
     			$(this).append(button);
-			})
+			})*/
 		}
 	);
 });
