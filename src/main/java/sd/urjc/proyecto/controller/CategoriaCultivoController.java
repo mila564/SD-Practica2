@@ -31,7 +31,6 @@ public class CategoriaCultivoController {
 		}
 		
 	}
-	
 	@GetMapping("/")
 	public ResponseEntity<List<CategoriaCultivo>> getCategoriasCultivo(){
 		List<CategoriaCultivo> categorias = repCategoriaCultivo.findAll();
