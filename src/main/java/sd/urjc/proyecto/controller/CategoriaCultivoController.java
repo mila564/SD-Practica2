@@ -1,10 +1,7 @@
 package sd.urjc.proyecto.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,38 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sd.urjc.proyecto.model.CategoriaCultivo;
 import sd.urjc.proyecto.repository.CategoriaCultivoRepository;
-import sd.urjc.proyecto.repository.EspecieRepository;
 
 @RequestMapping("/categoriaCultivo")
 @RestController
 public class CategoriaCultivoController {
 	@Autowired
 	private CategoriaCultivoRepository repCategoriaCultivo;
-	
-	@Autowired
-	private EspecieRepository repEspecie;
-	
-	@PostConstruct
-	public void init() {
-		repCategoriaCultivo.save(new CategoriaCultivo("Frutales", Arrays.asList(
-				repEspecie.findByNombreVulgar("Manzano").get(),
-				repEspecie.findByNombreVulgar("Peral").get()
-				)));
-		repCategoriaCultivo.save(new CategoriaCultivo("Hortalizas", Arrays.asList(
-				repEspecie.findByNombreVulgar("Fresa").get(),
-				repEspecie.findByNombreVulgar("Naranjo").get(),
-				repEspecie.findByNombreVulgar("Vid").get()
-				)));
-		repCategoriaCultivo.save(new CategoriaCultivo("Cereales", Arrays.asList(
-				repEspecie.findByNombreVulgar("Cacahuete").get(),
-				repEspecie.findByNombreVulgar("Lechuga").get(),
-				repEspecie.findByNombreVulgar("Alcachofa").get()
-				)));
-		repCategoriaCultivo.save(new CategoriaCultivo("Oleaginosas", Arrays.asList(
-				repEspecie.findByNombreVulgar("Alcachofa").get(),
-				repEspecie.findByNombreVulgar("Cacahuete").get()
-				)));
-	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CategoriaCultivo>getCategoriaCultivo(@PathVariable("id") String id){
