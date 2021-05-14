@@ -4,14 +4,21 @@ $(function(){
 	$.getJSON(urlCategoriaCultivo,
 		function(respuesta){
 			lista.append($('<h2>').html('Categorías')); // Título Categorías
+			lista.append($('</h2>'));
 			lista.append($('<ul>'));
 			for (categoria in respuesta){
-				//lista.append($('<li>')respuesta[categoria].nombre);
+				lista.append($('<li>').html(respuesta[categoria].nombre));
+				var button = document.createElement('button'); 
+				button.type = 'button'; 
+				button.innerText = 'Mostrar'; 
+				lista.append(button);
+				lista.append($('</li>'));
 			}
 			lista.append($('</ul>'));
 		}
 	);
 });
-
-//{Frutales, Hortalizas, Cereales, Oleaginosas}
-// categoria = {1, 2, 3, 4}
+/*
+{Frutales, Hortalizas, Cereales, Oleaginosas}
+categoria = {1, 2, 3, 4}
+*/
