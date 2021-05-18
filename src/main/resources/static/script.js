@@ -50,7 +50,7 @@ $(function(){
 						button.id = especiesCultivo[especie].nombreVulgar; // Se le coloca id, la cual es el nombre vulgar de dicha especie
 						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
 						elemento.append(button); // Se coloca en el html
-						//$(button).click(desplegarPlagas); //  Asociamos al botón el manejador de eventos
+						$(button).click(desplegarPlagas); //  Asociamos al botón el manejador de eventos
 						elemento.addClass(especiesCultivo[especie].nombreVulgar); // Colocamos atributo class al ítem de la lista de especies para poder identificarlo					
 					}
 				}
@@ -62,4 +62,44 @@ $(function(){
 			div.remove(); // Se borra del DOM
 		}		
 	}
+	
+	function desplegarPlagas(){
+		if (this.innerText == 'Mostrar'){
+			this.innerText = 'Ocultar'; // Ponemos el botón a 'Ocultar'
+			url = 'http://localhost:8080/especies/'+ encodeURI(this.id);//Obtenemos la url para poder hacer el GET de las plagas de la especie
+			var itemLista = $('li.'+this.id); // Cogemos el ítem de la especie de la que queremos obtener su lista de plagas
+			itemLista.append('<div id="listaPlagasDiv' + this.id + '"></div>'); // Creamos el div que contendrá las plagas
+			div = $('#listaPlagasDiv' + this.id); // Cogemos el div
+			var identificadorEspecie = this.id + 'Plagas'; // Creamos el identificador para la lista de plagas
+			//Procedemos a hacer el GET de la lista de plagas
+			$.getJSON(url,
+				function(respuesta){
+					div.append($('<h4>').html('Plagas')); //Colocamos el título
+					div.append($('</h4>'));
+					//div.append('<span> '+ respuesta.url+'</span>'); // Colocamos la url de la plaga
+					//div.append('<br>'); 
+					div.append($('<ul class="' + identificadorEspecie + '">')); // Creamos la lista donde colocaremos las plagas
+					div.append($('</ul>'));
+					lista = $('.'+ identificadorEspecie); // Cogemos la lista
+					var plagasEspecies = respuesta.posiblesPlagas; // Cogemos el array de las plagas de la especie
+					for (plaga = 0; plaga < plagasEspecies.length; plaga++){ 
+						elemento = $('<li>').html(plagasEspecies[plaga].nombreVulgar); // Creamos el ítem que contiene una de las plagas de la especie
+						lista.append(elemento); 
+						lista.append($('</li>'));
+						var button = document.createElement('button'); // Se crea el botón asociado a la plaga 
+						button.type = 'button'; // Se le asigna su tipo
+						button.id = plagasEspecies[plaga].nombreVulgar; // Se le coloca id, la cual es el nombre vulgar de dicha plaga
+						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
+						elemento.append(button); // Se coloca en el html
+						//$(button).click(desplegarSustancias); //  Asociamos al botón el manejador de eventos
+						elemento.addClass(plagasEspecies[plaga].nombreVulgar); // Colocamos atributo class al ítem de la lista de plagas para poder identificarlo						
+					}
+				})
+		}
+		else{
+			this.innerText = 'Mostrar'; // Cambia la funcionalidad del botón
+			div = $('#listaPlagasDiv' + this.id); // Cogemos el div con la información de la especie
+			div.remove(); // Se elimina
+		}
+	}	
 });
