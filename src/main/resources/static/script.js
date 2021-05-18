@@ -15,10 +15,10 @@ $(function(){
 				elemento = $('<li>').html(respuesta[categoria].nombre); // Creamos un elemento de la lista por cada categoría existente
 				lista.append(elemento); // Se coloca al final del html
 				lista.append($('</li>'));
-				elemento.addClass(respuesta[categoria].nombre);// Colocamos atributo class al ítem de la lista de categorías para poder identificarlo
+				elemento.addClass(respuesta[categoria].nombre.replace(/\s+/g, ''));// Colocamos atributo class al ítem de la lista de categorías para poder identificarlo
 				var button = document.createElement('button'); // Creamos el botón para cada categoría
 				button.type = 'button'; // Indicamos que es de tipo button
-				button.id = respuesta[categoria].nombre;
+				button.id = respuesta[categoria].nombre.replace(/\s+/g, '');
 				button.innerText = 'Mostrar'; // Le ponemos título al botón
 				elemento.append(button); // Insertamos el botón en el html
 				$(button).click(desplegarEspecies); // Asociamos al botón el manejador de eventos
@@ -33,6 +33,7 @@ $(function(){
 			itemLista.append($('<div id="listaEspeciesDiv' + this.id + '"></div>')); // Añadimos un div que agrupará toda la información de la categoría de cultivo
 			div = $('#listaEspeciesDiv' + this.id); // Cogemos el div
 			var identificadorCategoria = this.id + 'Especies'; // Creamos el identificador para la lista de especies de la categoría 
+			// Realizamos el GET de la categoría de cultivo
 			$.getJSON(url,
 				function(respuesta){// Realizamos la operación GET y, en segundo plano, se ejecuta la función
 					div.append($('<h3>').html('Especies')); // Colocamos el título 'Especies'
@@ -47,11 +48,11 @@ $(function(){
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la especie 
 						button.type = 'button'; // Se le asigna su tipo
-						button.id = especiesCultivo[especie].nombreVulgar; // Se le coloca id, la cual es el nombre vulgar de dicha especie
+						button.id = especiesCultivo[especie].nombreVulgar.replace(/\s+/g, ''); // Se le coloca id, la cual es el nombre vulgar de dicha especie
 						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
 						elemento.append(button); // Se coloca en el html
 						$(button).click(desplegarPlagas); //  Asociamos al botón el manejador de eventos
-						elemento.addClass(especiesCultivo[especie].nombreVulgar); // Colocamos atributo class al ítem de la lista de especies para poder identificarlo					
+						elemento.addClass(especiesCultivo[especie].nombreVulgar.replace(/\s+/g, '')); // Colocamos atributo class al ítem de la lista de especies para poder identificarlo					
 					}
 				}
 			);			
@@ -71,13 +72,11 @@ $(function(){
 			itemLista.append('<div id="listaPlagasDiv' + this.id + '"></div>'); // Creamos el div que contendrá las plagas
 			div = $('#listaPlagasDiv' + this.id); // Cogemos el div
 			var identificadorEspecie = this.id + 'Plagas'; // Creamos el identificador para la lista de plagas
-			//Procedemos a hacer el GET de la lista de plagas
+			//Procedemos a hacer el GET de la especie
 			$.getJSON(url,
 				function(respuesta){
 					div.append($('<h4>').html('Plagas')); //Colocamos el título
-					div.append($('</h4>'));
-					//div.append('<span> '+ respuesta.url+'</span>'); // Colocamos la url de la plaga
-					//div.append('<br>'); 
+					div.append($('</h4>')); 
 					div.append($('<ul class="' + identificadorEspecie + '">')); // Creamos la lista donde colocaremos las plagas
 					div.append($('</ul>'));
 					lista = $('.'+ identificadorEspecie); // Cogemos la lista
@@ -88,11 +87,11 @@ $(function(){
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la plaga 
 						button.type = 'button'; // Se le asigna su tipo
-						button.id = plagasEspecies[plaga].nombreVulgar; // Se le coloca id, la cual es el nombre vulgar de dicha plaga
+						button.id = plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, ''); // Se le coloca id, la cual es el nombre vulgar de dicha plaga
 						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
 						elemento.append(button); // Se coloca en el html
-						//$(button).click(desplegarSustancias); //  Asociamos al botón el manejador de eventos
-						elemento.addClass(plagasEspecies[plaga].nombreVulgar); // Colocamos atributo class al ítem de la lista de plagas para poder identificarlo						
+						$(button).click(desplegarSustancias); //  Asociamos al botón el manejador de eventos
+						elemento.addClass(plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, '')); // Colocamos atributo class al ítem de la lista de plagas para poder identificarlo						
 					}
 				})
 		}
@@ -101,5 +100,45 @@ $(function(){
 			div = $('#listaPlagasDiv' + this.id); // Cogemos el div con la información de la especie
 			div.remove(); // Se elimina
 		}
-	}	
+	}
+	
+	function desplegarSustancias(){
+		if (this.innerText == 'Mostrar'){
+			this.innerText = 'Ocultar'; // Ocultamos el botón
+			var url = 'http://localhost:8080/plagas/' + encodeURI(this.id); // Obtenemos la url de la plaga
+			var itemLista = $('li.'+this.id); // Cogemos el elemento li que contiene la información de una plaga
+			itemLista.append('<div id="listaSustanciasDiv' + this.id + '"></div>'); // Creamos el div que contendrá la información de la plaga
+			div = $('#listaSustanciasDiv' + this.id); // Obtenemos el div
+			var identificadorPlaga = this.id + 'Sustancias'; // Creamos el identificador para la lista de sustancias
+			//Procedemos a hacer el GET de la plaga
+			$.getJSON(url,
+				function(respuesta){
+					div.append('<span> '+ respuesta.url+'</span>'); // Colocamos la url de la plaga en el html
+					div.append('<br>');
+					div.append($('<h5>').html('Sustancias activas')); //Colocamos el título
+					div.append($('</h5>')); 
+					div.append($('<ul class="' + identificadorPlaga + '">')); // Creamos la lista de sustancias
+					div.append($('</ul>'));
+					lista = $('.'+ identificadorPlaga); // Obtenemos la lista
+					var sustanciasPlaga = respuesta.sustanciasActivas; // Creamos el array que contiene las sustancias activas de la plaga
+					for (sustancia = 0; sustancia < sustanciasPlaga.length; sustancia++){
+						elemento = $('<li>').html(sustanciasPlaga[sustancia].nombre); // Creamos el ítem dentro de la lista de sustancias con su correspondiente nombre
+						lista.append(elemento); //Lo colocamos en el html
+						lista.append($('</li>')); // Cerramos la lista
+						var button = document.createElement('button'); // Creamos el botón asociado a la sustancia
+						button.type = 'button'; // Le colocamos su tipo
+						button.id = sustanciasPlaga[sustancia].nombre.replace(/\s+/g, ''); // Colocamos su id (nombre de la sustancia sin espacios en blanco)
+						button.innerText = 'Mostrar'; // Se coloca 'Mostrar' dentro del botón
+						elemento.append(button); // Se posiciona en el html
+						elemento.addClass(sustanciasPlaga[sustancia].nombre.replace(/\s+/g, '')); // Se pone el nombre de la sustancia como valor del atributo clase del elemento de la lista
+					} 
+				})
+		}
+		else{
+			this.innerText = 'Mostrar'; // Mostramos el botón
+			div = $('#listaSustanciasDiv' + this.id); // Obtenemos el contenido a borrar
+			div.remove(); // Se borra
+		}
+	}
+		
 });
