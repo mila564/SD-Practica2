@@ -6,8 +6,8 @@ $(function(){
 		function(respuesta){
 			contenedor.append($('<div id="listaCategoriasDiv"></div>')); // Colocamos el div que contendrá toda la información de las categorías
 			div = $('#listaCategoriasDiv'); // Cogemos el elemento
-			div.append($('<h2>').html('Categorías')); // Colocamos de título 'Categorías' en el html
-			div.append($('</h2>'));
+			div.append($('<h1>').html('Categorías')); // Colocamos de título 'Categorías' en el html
+			div.append($('</h1>'));
 			div.append($('<ul id="listaCategoriasUl">')); // Creamos la lista no ordenada de categorías
 			div.append($('</ul>'));
 			lista = $('#listaCategoriasUl'); // Obtenemos el elemento html en la variable lista
@@ -15,10 +15,12 @@ $(function(){
 				elemento = $('<li>').html(respuesta[categoria].nombre); // Creamos un elemento de la lista por cada categoría existente
 				lista.append(elemento); // Se coloca al final del html
 				lista.append($('</li>'));
-				elemento.addClass(respuesta[categoria].nombre.replace(/\s+/g, ''));// Colocamos atributo class al ítem de la lista de categorías para poder identificarlo
+				elemento.addClass(respuesta[categoria].nombre.replace(/\s+/g, '_'));// Colocamos atributo class al ítem de la lista de categorías para poder identificarlo
+				// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
 				var button = document.createElement('button'); // Creamos el botón para cada categoría
 				button.type = 'button'; // Indicamos que es de tipo button
-				button.id = respuesta[categoria].nombre.replace(/\s+/g, '');
+				button.id = respuesta[categoria].nombre.replace(/\s+/g, '_'); // Se identifica al botón
+				// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 				button.innerText = 'Mostrar'; // Le ponemos título al botón
 				elemento.append(button); // Insertamos el botón en el html
 				$(button).click(desplegarEspecies); // Asociamos al botón el manejador de eventos
@@ -28,7 +30,9 @@ $(function(){
 	function desplegarEspecies(){
 		if (this.innerText == 'Mostrar'){
 			this.innerText = 'Ocultar'; // Cambiamos la funcionalidad del botón
-			url = 'http://localhost:8080/categoriaCultivo/'+ encodeURI(this.id); // Conseguimos la url de la categoría de cultivo de la cual necesitamos su lista de especies
+			url = 'http://localhost:8080/categoriaCultivo/'+ encodeURI(this.id.replaceAll('_', ' ')); // Conseguimos la url de la categoría de cultivo de la cual necesitamos su lista de especies
+			// Al haber transformado con reverse los ids, deshacemos el cambio para que se produzca la petición HTTP GET correctamente
+			this.id.replace(/\s+/g, '_'); // Deshacemos el cambio 
 			var itemLista = $('li.'+this.id); // Identificar el ítem de la lista de la categoría 
 			itemLista.append($('<div id="listaEspeciesDiv' + this.id + '"></div>')); // Añadimos un div que agrupará toda la información de la categoría de cultivo
 			div = $('#listaEspeciesDiv' + this.id); // Cogemos el div
@@ -36,8 +40,8 @@ $(function(){
 			// Realizamos el GET de la categoría de cultivo
 			$.getJSON(url,
 				function(respuesta){// Realizamos la operación GET y, en segundo plano, se ejecuta la función
-					div.append($('<h3>').html('Especies')); // Colocamos el título 'Especies'
-					div.append($('</h3>'));
+					div.append($('<h2>').html('Especies')); // Colocamos el título 'Especies'
+					div.append($('</h2>'));
 					div.append($('<ul class="' + identificadorCategoria + '">')); // Creamos la lista donde colocaremos las especies
 					div.append($('</ul>'));
 					lista = $('.'+ identificadorCategoria); // Cogemos la lista de especies
@@ -48,11 +52,13 @@ $(function(){
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la especie 
 						button.type = 'button'; // Se le asigna su tipo
-						button.id = especiesCultivo[especie].nombreVulgar.replace(/\s+/g, ''); // Se le coloca id, la cual es el nombre vulgar de dicha especie
+						button.id = especiesCultivo[especie].nombreVulgar.replace(/\s+/g, '_'); // Se le coloca id, la cual es el nombre vulgar de dicha especie
+						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
 						elemento.append(button); // Se coloca en el html
 						$(button).click(desplegarPlagas); //  Asociamos al botón el manejador de eventos
-						elemento.addClass(especiesCultivo[especie].nombreVulgar.replace(/\s+/g, '')); // Colocamos atributo class al ítem de la lista de especies para poder identificarlo					
+						elemento.addClass(especiesCultivo[especie].nombreVulgar.replace(/\s+/g, '_')); // Colocamos atributo class al ítem de la lista de especies para poder identificarlo	
+						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
 					}
 				}
 			);			
@@ -67,7 +73,9 @@ $(function(){
 	function desplegarPlagas(){
 		if (this.innerText == 'Mostrar'){
 			this.innerText = 'Ocultar'; // Ponemos el botón a 'Ocultar'
-			url = 'http://localhost:8080/especies/'+ encodeURI(this.id);//Obtenemos la url para poder hacer el GET de las plagas de la especie
+			url = 'http://localhost:8080/especies/'+ encodeURI(this.id.replaceAll('_', ' '));//Obtenemos la url para poder hacer el GET de las plagas de la especie
+			// Al haber transformado con reverse los ids, deshacemos el cambio para que se produzca la petición HTTP GET correctamente
+			this.id.replace(/\s+/g, '_'); // Deshacemos el cambio 
 			var itemLista = $('li.'+this.id); // Cogemos el ítem de la especie de la que queremos obtener su lista de plagas
 			itemLista.append('<div id="listaPlagasDiv' + this.id + '"></div>'); // Creamos el div que contendrá las plagas
 			div = $('#listaPlagasDiv' + this.id); // Cogemos el div
@@ -75,8 +83,8 @@ $(function(){
 			//Procedemos a hacer el GET de la especie
 			$.getJSON(url,
 				function(respuesta){
-					div.append($('<h4>').html('Plagas')); //Colocamos el título
-					div.append($('</h4>')); 
+					div.append($('<h3>').html('Plagas')); //Colocamos el título
+					div.append($('</h3>')); 
 					div.append($('<ul class="' + identificadorEspecie + '">')); // Creamos la lista donde colocaremos las plagas
 					div.append($('</ul>'));
 					lista = $('.'+ identificadorEspecie); // Cogemos la lista
@@ -87,11 +95,13 @@ $(function(){
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la plaga 
 						button.type = 'button'; // Se le asigna su tipo
-						button.id = plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, ''); // Se le coloca id, la cual es el nombre vulgar de dicha plaga
+						button.id = plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, '_'); // Se le coloca id, la cual es el nombre vulgar de dicha plaga
+						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
 						elemento.append(button); // Se coloca en el html
 						$(button).click(desplegarSustancias); //  Asociamos al botón el manejador de eventos
-						elemento.addClass(plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, '')); // Colocamos atributo class al ítem de la lista de plagas para poder identificarlo						
+						elemento.addClass(plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, '_')); // Colocamos atributo class al ítem de la lista de plagas para poder identificarlo
+						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
 					}
 				})
 		}
@@ -105,7 +115,9 @@ $(function(){
 	function desplegarSustancias(){
 		if (this.innerText == 'Mostrar'){
 			this.innerText = 'Ocultar'; // Ocultamos el botón
-			var url = 'http://localhost:8080/plagas/' + encodeURI(this.id); // Obtenemos la url de la plaga
+			var url = 'http://localhost:8080/plagas/' + encodeURI(this.id.replaceAll('_', ' ')); // Obtenemos la url de la plaga
+			// Al haber transformado con reverse los ids, deshacemos el cambio para que se produzca la petición HTTP GET correctamente
+			this.id.replace(/\s+/g, '_'); // Deshacemos el cambio 
 			var itemLista = $('li.'+this.id); // Cogemos el elemento li que contiene la información de una plaga
 			itemLista.append('<div id="listaSustanciasDiv' + this.id + '"></div>'); // Creamos el div que contendrá la información de la plaga
 			div = $('#listaSustanciasDiv' + this.id); // Obtenemos el div
@@ -113,10 +125,10 @@ $(function(){
 			//Procedemos a hacer el GET de la plaga
 			$.getJSON(url,
 				function(respuesta){
-					div.append('<span> '+ respuesta.url+'</span>'); // Colocamos la url de la plaga en el html
+					div.append('<span> '+ respuesta.url +'</span>'); // Colocamos la url de la plaga en el html
 					div.append('<br>');
-					div.append($('<h5>').html('Sustancias activas')); //Colocamos el título
-					div.append($('</h5>')); 
+					div.append($('<h4>').html('Sustancias activas')); //Colocamos el título
+					div.append($('</h4>')); 
 					div.append($('<ul class="' + identificadorPlaga + '">')); // Creamos la lista de sustancias
 					div.append($('</ul>'));
 					lista = $('.'+ identificadorPlaga); // Obtenemos la lista
@@ -127,10 +139,13 @@ $(function(){
 						lista.append($('</li>')); // Cerramos la lista
 						var button = document.createElement('button'); // Creamos el botón asociado a la sustancia
 						button.type = 'button'; // Le colocamos su tipo
-						button.id = sustanciasPlaga[sustancia].nombre.replace(/\s+/g, ''); // Colocamos su id (nombre de la sustancia sin espacios en blanco)
+						button.id = sustanciasPlaga[sustancia].nombre.replace(/\s+/g, '_'); // Colocamos su id (nombre de la sustancia sin espacios en blanco)
+						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 						button.innerText = 'Mostrar'; // Se coloca 'Mostrar' dentro del botón
 						elemento.append(button); // Se posiciona en el html
-						elemento.addClass(sustanciasPlaga[sustancia].nombre.replace(/\s+/g, '')); // Se pone el nombre de la sustancia como valor del atributo clase del elemento de la lista
+						$(button).click(desplegarProductos); //  Asociamos al botón el manejador de eventos
+						elemento.addClass(sustanciasPlaga[sustancia].nombre.replace(/\s+/g, '_')); // Se pone el nombre de la sustancia como valor del atributo clase del elemento de la lista
+						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
 					} 
 				})
 		}
@@ -140,5 +155,69 @@ $(function(){
 			div.remove(); // Se borra
 		}
 	}
-		
+	
+	function desplegarProductos(){
+		if (this.innerText == 'Mostrar'){
+			this.innerText = 'Ocultar'; // Ocultamos el botón
+			var url = 'http://localhost:8080/sustanciaActiva/' + encodeURI(this.id.replaceAll('_', ' '));// Obtenemos la url de la sustancia
+			// Al haber transformado con reverse los ids, deshacemos el cambio para que se produzca la petición HTTP GET correctamente
+			this.id.replace(/\s+/g, '_'); // Deshacemos el cambio 
+			var itemLista = $('li.'+this.id); // Cogemos el elemento li que contiene la información de una sustancia
+			itemLista.append('<div id="listaProductosDiv' + this.id + '"></div>'); // Creamos el div que contendrá la información de la sustancia
+			div = $('#listaProductosDiv' + this.id); // Obtenemos el div
+			var identificadorSustancia = this.id + 'Productos'; // Creamos el identificador para la lista de productos
+			//Procedemos a hacer el GET de la sustancia
+			$.getJSON(url,
+				function(respuesta){
+					div.append($('<h5>').html('Productos')); //Colocamos el título
+					div.append($('</h5>'));
+					div.append($('<ul class="' + identificadorSustancia + '">')); // Creamos la lista de productos
+					div.append($('</ul>'));
+					lista = $('.'+ identificadorSustancia); // Obtenemos la lista
+					var productosSustancia = respuesta.productos; // Creamos el array que contiene los productos de la sustancia
+					for (producto = 0; producto < productosSustancia.length; producto++){
+						elemento = $('<li>').html(productosSustancia[producto].nombre); // Creamos el ítem de uno de los productos de la lista de sustancias
+						lista.append(elemento); //Lo colocamos en el html
+						lista.append($('</li>')); // Cerramos la lista
+						var button = document.createElement('button'); // Creamos el botón asociado a la sustancia
+						button.type = 'button'; // Le colocamos su tipo
+						button.id = productosSustancia[producto].nombre.replace(/\s+/g, '_'); // Colocamos su id (nombre del producto sin espacios en blanco)
+						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
+						button.innerText = 'Mostrar'; // Se coloca 'Mostrar' dentro del botón
+						elemento.append(button); // Se posiciona en el html
+						$(button).click(desplegarProductosInfo); //  Asociamos al botón el manejador de eventos
+						elemento.addClass(productosSustancia[producto].nombre.replace(/\s+/g, '_')); // Se pone el nombre del producto como valor del atributo clase del elemento de la lista
+						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
+					} 
+				});
+		}
+		else{
+			this.innerText = 'Mostrar'; // Mostramos el botón
+			div = $('#listaProductosDiv' + this.id); // Obtenemos el contenido a borrar
+			div.remove(); // Se borra
+		}
+	};
+	
+	function desplegarProductosInfo(){
+		if (this.innerText == 'Mostrar'){
+			this.innerText = 'Ocultar'; // Ocultamos el botón	
+			var url = 'http://localhost:8080/productos/' + encodeURI(this.id.replaceAll('_', ' '));// Obtenemos la url del producto
+			// Al haber transformado con reverse los ids, deshacemos el cambio para que se produzca la petición HTTP GET correctamente
+			this.id.replace(/\s+/g, '_'); // Deshacemos el cambio 
+			var itemLista = $('li.'+this.id); // Cogemos el elemento li que contiene el producto
+			itemLista.append('<div id="listaProductosInfoDiv' + this.id + '"></div>'); // Creamos el div donde se colocará la información del producto
+			div = $('#listaProductosInfoDiv' + this.id); // Obtenemos el div
+			//Procedemos a hacer el GET del producto
+			$.getJSON(url,
+				function(respuesta){
+					div.append('<span> '+ respuesta.url +'</span>'); // Colocamos la url del producto en el html
+					div.append('<br>');					
+				})
+		}
+		else{
+			this.innerText = 'Mostrar'; // Mostramos el botón
+			div = $('#listaProductosInfoDiv' + this.id); // Obtenemos el contenido a borrar
+			div.remove(); // Se borra			
+		}
+	}	
 });
