@@ -48,8 +48,9 @@ $(function(){
 					lista = $('.'+ identificadorCategoria); // Cogemos la lista de especies
 					var especiesCultivo = respuesta.especies; // Obtenemos el array de especies de la respuesta GET
 					for (especie = 0; especie < especiesCultivo.length; especie++){ 
-						elemento = $('<li>').html(especiesCultivo[especie].nombreVulgar); // Creamos el ítem que contiene una de las especies de la categoría
-						lista.append(elemento); 
+						elemento = $('<li>'); // Creamos el ítem que contiene una de las especies de la categoría
+						elemento.append('<span title="' + especiesCultivo[especie].nombreCientifico + '">' + especiesCultivo[especie].nombreVulgar + '</span>')//.html(especiesCultivo[especie].nombreVulgar);
+						lista.append(elemento);
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la especie 
 						button.type = 'button'; // Se le asigna su tipo
@@ -61,7 +62,6 @@ $(function(){
 						$(button).click(desplegarPlagas); //  Asociamos al botón el manejador de eventos
 						elemento.addClass(especiesCultivo[especie].nombreVulgar.replace(/\s+/g, '_')); // Colocamos atributo class al ítem de la lista de especies para poder identificarlo	
 						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
-						elemento.attr('title', especiesCultivo[especie].nombreCientifico); // Añadimos el tooltip para el nombre científico de la especie
 					}
 				}
 			);			
@@ -93,7 +93,8 @@ $(function(){
 					lista = $('.'+ identificadorEspecie); // Cogemos la lista
 					var plagasEspecies = respuesta.posiblesPlagas; // Cogemos el array de las plagas de la especie
 					for (plaga = 0; plaga < plagasEspecies.length; plaga++){ 
-						elemento = $('<li>').html(plagasEspecies[plaga].nombreVulgar); // Creamos el ítem que contiene una de las plagas de la especie
+						elemento = $('<li>'); // Creamos el ítem que contiene una de las plagas de la especie
+						elemento.append('<span title="' + plagasEspecies[plaga].nombreCientifico + '">' + plagasEspecies[plaga].nombreVulgar + '</span>')
 						lista.append(elemento); 
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la plaga 
@@ -106,7 +107,6 @@ $(function(){
 						$(button).click(desplegarSustancias); //  Asociamos al botón el manejador de eventos
 						elemento.addClass(plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, '_')); // Colocamos atributo class al ítem de la lista de plagas para poder identificarlo
 						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
-						elemento.attr('title', plagasEspecies[plaga].nombreCientifico); // Añadimos el tooltip para el nombre científico de la plaga
 					}
 				})
 		}
