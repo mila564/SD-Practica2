@@ -59,6 +59,7 @@ $(function(){
 						$(button).click(desplegarPlagas); //  Asociamos al botón el manejador de eventos
 						elemento.addClass(especiesCultivo[especie].nombreVulgar.replace(/\s+/g, '_')); // Colocamos atributo class al ítem de la lista de especies para poder identificarlo	
 						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
+						elemento.attr('title', especiesCultivo[especie].nombreCientifico); // Añadimos el tooltip para el nombre científico de la especie
 					}
 				}
 			);			
@@ -102,6 +103,7 @@ $(function(){
 						$(button).click(desplegarSustancias); //  Asociamos al botón el manejador de eventos
 						elemento.addClass(plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, '_')); // Colocamos atributo class al ítem de la lista de plagas para poder identificarlo
 						// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
+						elemento.attr('title', plagasEspecies[plaga].nombreCientifico); // Añadimos el tooltip para el nombre científico de la plaga
 					}
 				})
 		}
