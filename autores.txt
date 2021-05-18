@@ -1,0 +1,12 @@
+Juan Antonio Vinaches Vizcaíno:50498773L
+-Controladores REST, modelo y repositorio: Especie
+Milagros Mouriño Ursul:50366324G
+-Controladores REST, modelo y repositorio: Plaga y ProductoFitosanitario
+Sonia Casero Pérez: 50572546P
+-Controladores REST, modelo y repositorio:CategoriaCultivo y SustanciaActiva
+
+En común:
+-DataBaseInitializer
+-Todo el código Javascript con las peticiones HTTP GET al servidor y modificaciones sobre el DOM
+-HTML
+-CSS
