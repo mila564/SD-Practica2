@@ -19,7 +19,7 @@ $(function(){
 				// El replace nos permite transformar los blancos en barras bajas, ya que una clase no puede tener espacios en blanco
 				var button = document.createElement('button'); // Creamos el botón para cada categoría
 				button.type = 'button'; // Indicamos que es de tipo button
-				button.addClass("btn btn-warning");
+				$(button).addClass("btn btn-info");
 				button.id = respuesta[categoria].nombre.replace(/\s+/g, '_'); // Se identifica al botón
 				// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 				button.innerText = 'Mostrar'; // Le ponemos título al botón
@@ -53,7 +53,7 @@ $(function(){
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la especie 
 						button.type = 'button'; // Se le asigna su tipo
-						button.addClass("btn btn-warning");
+						$(button).addClass("btn btn-info");
 						button.id = especiesCultivo[especie].nombreVulgar.replace(/\s+/g, '_'); // Se le coloca id, la cual es el nombre vulgar de dicha especie
 						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
@@ -98,7 +98,7 @@ $(function(){
 						lista.append($('</li>'));
 						var button = document.createElement('button'); // Se crea el botón asociado a la plaga 
 						button.type = 'button'; // Se le asigna su tipo
-						button.addClass("btn btn-warning");
+						$(button).addClass("btn btn-info");
 						button.id = plagasEspecies[plaga].nombreVulgar.replace(/\s+/g, '_'); // Se le coloca id, la cual es el nombre vulgar de dicha plaga
 						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 						button.innerText = 'Mostrar'; // Se introduce de texto 'Mostrar' en el botón por defecto
@@ -144,7 +144,7 @@ $(function(){
 						lista.append($('</li>')); // Cerramos la lista
 						var button = document.createElement('button'); // Creamos el botón asociado a la sustancia
 						button.type = 'button'; // Le colocamos su tipo
-						button.addClass("btn btn-warning");
+						$(button).addClass("btn btn-info");
 						button.id = sustanciasPlaga[sustancia].nombre.replace(/\s+/g, '_'); // Colocamos su id (nombre de la sustancia sin espacios en blanco)
 						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 						button.innerText = 'Mostrar'; // Se coloca 'Mostrar' dentro del botón
@@ -187,7 +187,7 @@ $(function(){
 						lista.append($('</li>')); // Cerramos la lista
 						var button = document.createElement('button'); // Creamos el botón asociado a la sustancia
 						button.type = 'button'; // Le colocamos su tipo
-						button.addClass("btn btn-warning");
+						$(button).addClass("btn btn-info");
 						button.id = productosSustancia[producto].nombre.replace(/\s+/g, '_'); // Colocamos su id (nombre del producto sin espacios en blanco)
 						// El replace nos permite transformar los blancos en barras bajas para no tener problemas con los ids
 						button.innerText = 'Mostrar'; // Se coloca 'Mostrar' dentro del botón

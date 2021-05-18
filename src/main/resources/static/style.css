@@ -1,0 +1,27 @@
+body{
+	background-image: url(campo.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+button{
+	position: static;
+	right: 1000px;
+	margin-bottom: 4px;
+	margin-left: 4px;
+}
+h2, h3, h4, h5, h6{
+	color: #1f706e;
+}
+h1{
+	color: #62d9d7;
+	text-shadow: 3px 3px #1f706e;
+}
+#contenedorCategorias{
+	width: 500px;
+	margin: 60px auto;
+    background: rgba(255,255,255,0.9);
+    padding-bottom: 5px;
+    padding-top: 1px;
+    padding-left: 12px;
+    border-radius: 10px;
+}
