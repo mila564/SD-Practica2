@@ -1,6 +1,5 @@
 package sd.urjc.proyecto.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +16,19 @@ import sd.urjc.proyecto.repository.ProductoFitosanitarioRepository;
 @RestController
 @RequestMapping("/productos")
 public class ProductoFitosanitarioRestController {
-
 	@Autowired
 	private ProductoFitosanitarioRepository repProductos;
-	
-	@GetMapping("/")
-    private ResponseEntity<List<ProductoFitosanitario>> getProductos() {
-        return new ResponseEntity<List<ProductoFitosanitario>>(repProductos.findAll(), HttpStatus.OK);
-    }
 	
 	@GetMapping(value = "/{nombre}")
 	public ResponseEntity<ProductoFitosanitario> getProducto(@PathVariable String nombre){
 		Optional<ProductoFitosanitario> opt = repProductos.findByNombre(nombre);
 		if (opt.isPresent()) {
-			return new ResponseEntity<ProductoFitosanitario>(opt.get(), HttpStatus.OK);
+			ProductoFitosanitario producto = opt.get();
+			return new ResponseEntity<ProductoFitosanitario>(producto, HttpStatus.OK);
 		}
 		else{
 			return new ResponseEntity<ProductoFitosanitario>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
 }

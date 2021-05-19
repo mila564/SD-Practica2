@@ -1,6 +1,5 @@
 package sd.urjc.proyecto.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +21,14 @@ public class SustanciaActivaController {
 
 	@GetMapping("/{nombre}")
 	public ResponseEntity<SustanciaActiva> getSustanciaActiva(@PathVariable("nombre") String nombre){
-		Optional<SustanciaActiva> sustanciaActiva = repSustanciaActiva.findByNombre(nombre);
-		if(sustanciaActiva.isPresent()) {
-			return new ResponseEntity<SustanciaActiva>(sustanciaActiva.get(), HttpStatus.OK);
+		Optional<SustanciaActiva> opt = repSustanciaActiva.findByNombre(nombre);
+		if(opt.isPresent()) {
+			SustanciaActiva sustancia = opt.get();
+			return new ResponseEntity<SustanciaActiva>(sustancia, HttpStatus.OK);
 		}
 		else {
 			return new ResponseEntity<SustanciaActiva>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@GetMapping("/")
-	public ResponseEntity<List<SustanciaActiva>> getSustanciasActivas(){
-		List<SustanciaActiva> sustanciasActivas = repSustanciaActiva.findAll();
-		return new ResponseEntity<List<SustanciaActiva>>(sustanciasActivas, HttpStatus.OK);
-	}
 }
